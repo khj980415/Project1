@@ -9,8 +9,6 @@ $(function(){
 	let bgVideo=document.getElementById("bgVideo");
 
 	bgVideo.addEventListener("loadeddata", function(){
-		bgVideo.muted=true;
-		bgVideo.loop=true;
 		bgVideo.play();
 	});
 
@@ -21,10 +19,8 @@ $(function(){
 
 	for(let i=0; i<videoName.length; i++){
 		videoList.push(document.getElementById(videoName[i]));
-		videoList[i].muted=true;
 
 		videoList[i].addEventListener("loadeddata", function(e){
-			e.target.muted=true;
 			e.target.pause();
 		});
 
