@@ -8,13 +8,13 @@ $(function(){
 
 	let bgVideo=document.getElementById("bgVideo");
 
-    bgVideo.addEventListener("loadeddata", function(){
-        bgVideo.muted=true;
-        bgVideo.loop=true;
-        bgVideo.play();
-    });
+	bgVideo.addEventListener("loadeddata", function(){
+		bgVideo.muted=true;
+		bgVideo.loop=true;
+		bgVideo.play();
+	});
 
-    $("#sec3 .slider .category li:first-child").addClass("active");
+	$("#sec3 .slider .category li:first-child").addClass("active");
 
 	let videoList=[];
 	let videoName=["video1", "video2", "video3"];
@@ -22,6 +22,11 @@ $(function(){
 	for(let i=0; i<videoName.length; i++){
 		videoList.push(document.getElementById(videoName[i]));
 		videoList[i].muted=true;
+
+		videoList[i].addEventListener("loadeddata", function(e){
+			e.target.muted=true;
+			e.target.pause();
+		});
 
 		videoList[i].addEventListener("ended", function(e){
 			e.target.currentTime=0;
@@ -32,6 +37,8 @@ $(function(){
 	let videoN=0;
 
 	function videoInteraction(n){
+		console.log("videoInteraction", n);
+
 		for(let i=0; i<videoList.length; i++){
 			if(i === n){
 				videoList[i].play();
@@ -41,23 +48,23 @@ $(function(){
 			}
 		}
 	}
-	
-    const mainSwiper = new Swiper(".mainSwiper", {
-    slidesPerView: 1,
-    spaceBetween: 30,
-    loop: true,
-    on: {
-        init: function(){
-            setTimeout(() => videoInteraction(videoN), 100);
-        },
-        slideChangeTransitionEnd: function(){
-            videoN=this.realIndex;
 
-			if(videoN !== 3){
-				videoInteraction(videoN);
+	const mainSwiper = new Swiper(".mainSwiper", {
+		slidesPerView: 1,
+		spaceBetween: 30,
+		loop: true,
+		on: {
+			init: function(){
+				setTimeout(() => videoInteraction(videoN), 1000);
+			},
+			slideChangeTransitionEnd: function(){
+				videoN=this.realIndex;
+
+				if(videoN !== 3){
+					videoInteraction(videoN);
+				}
 			}
-        }
-    }
+		}
 });
 
 let subSwiper = new Swiper(".subSwiper", {
