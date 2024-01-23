@@ -7,9 +7,12 @@ $(function(){
     let winw=0;
 
 	let bgVideo=document.getElementById("bgVideo");
-	bgVideo.muted=true;
-	bgVideo.play();
-	bgVideo.loop=true;
+
+    bgVideo.addEventListener("loadeddata", function(){
+        bgVideo.muted=true;
+        bgVideo.loop=true;
+        bgVideo.play();
+    });
 
     $("#sec3 .slider .category li:first-child").addClass("active");
 
