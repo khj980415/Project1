@@ -263,6 +263,8 @@ header .search_area.active {
 
 header .search_area form * {
     appearance: none;
+    -webkit-appearance: none;
+	-webkit-border-radius: 0;
     border: none;
     background-color: transparent;
     font-family: "Roboto", "Noto Sans KR", sans-serif;
@@ -970,6 +972,8 @@ footer .top .right form .join_area {
 footer .top .right form * {
     height: 40px;
     appearance: none;
+    -webkit-appearance: none;
+	-webkit-border-radius: 0;
     margin: 0;
     padding: 0;
     font-family: "Roboto", "Noto Sans KR", sans-serif;
